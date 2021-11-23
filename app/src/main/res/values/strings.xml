@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CatFacts</string>
+    <string name="title_facts">Facts</string>
+    <string name="title_saved">Saved</string>
+</resources>

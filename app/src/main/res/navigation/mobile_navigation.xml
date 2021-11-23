@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_facts">
+
+    <fragment
+        android:id="@+id/navigation_facts"
+        android:name="com.veselove.catfacts.ui.facts.FactsFragment"
+        android:label="@string/title_facts"
+        tools:layout="@layout/fragment_facts" />
+
+    <fragment
+        android:id="@+id/navigation_saved"
+        android:name="com.veselove.catfacts.ui.saved.SavedFragment"
+        android:label="@string/title_saved"
+        tools:layout="@layout/fragment_saved" />
+</navigation>
