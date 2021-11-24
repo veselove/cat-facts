@@ -30,7 +30,7 @@ class FactsFragment : Fragment() {
         _binding = FragmentFactsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textFacts
+        val textView: TextView = binding.tvCatFact
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
