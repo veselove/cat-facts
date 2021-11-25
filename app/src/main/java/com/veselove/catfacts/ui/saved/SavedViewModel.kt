@@ -1,13 +1,23 @@
 package com.veselove.catfacts.ui.saved
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.*
+import com.veselove.catfacts.db.CatFactsDatabase
+import com.veselove.catfacts.models.CatFact
+import com.veselove.catfacts.repository.CatFactsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class SavedViewModel : ViewModel() {
+class SavedViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is saved Fragment"
+    private val repository: CatFactsRepository
+    private var readAll: LiveData<List<CatFact>>
+
+    init {
+        val catFactsDB = CatFactsDatabase.getDatabase(application).getCatFactsDao()
+        repository = CatFactsRepository(catFactsDB)
+        readAll = repository.getSavedCatFacts()
     }
-    val text: LiveData<String> = _text
+
 }

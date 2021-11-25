@@ -14,21 +14,26 @@ import com.veselove.catfacts.MainActivity
 
 abstract class CatFactsDatabase : RoomDatabase() {
 
-    abstract fun getCatFactsDao(): CatsFactsDao
+    abstract fun getCatFactsDao(): CatFactsDao
 
     companion object {
-        private var instance: CatFactsDatabase? = null
-        private val LOCK = Any()
+        @Volatile
+        private var INSTANCE: CatFactsDatabase? = null
 
-        operator fun invoke(context: MainActivity) = instance ?: synchronized(LOCK) {
-            instance ?: createDataBase(context).also { instance = it}
+        fun getDatabase(context: Context): CatFactsDatabase {
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    CatFactsDatabase::class.java,
+                    "cat_facts_db.db"
+                ).build()
+                INSTANCE = instance
+                return instance
+            }
         }
-
-        private fun createDataBase(context: Context) =
-            Room.databaseBuilder(
-                context.applicationContext,
-                CatFactsDatabase::class.java,
-                "cat_facts_db.db"
-            ).build()
     }
 }

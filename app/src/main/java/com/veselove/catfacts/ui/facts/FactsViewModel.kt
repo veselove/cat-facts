@@ -1,13 +1,34 @@
 package com.veselove.catfacts.ui.facts
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import com.veselove.catfacts.db.CatFactsDatabase
+import com.veselove.catfacts.models.CatFact
+import com.veselove.catfacts.repository.CatFactsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class FactsViewModel : ViewModel() {
-    
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is fact Fragment"
+class FactsViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val repository: CatFactsRepository
+    val catFact: MutableLiveData<CatFact> = MutableLiveData()
+    private val response: CatFact = CatFact("none", 0)
+
+    init {
+        val catFactsDB = CatFactsDatabase.getDatabase(application).getCatFactsDao()
+        repository = CatFactsRepository(catFactsDB)
+        getCatFact()
     }
-    val text: LiveData<String> = _text
+
+    fun getCatFact() = viewModelScope.launch {
+        val response = repository.getCatFact()
+        catFact.postValue(response)
+    }
+
+    fun saveCatFact() = viewModelScope.launch(Dispatchers.IO) {
+            repository.upsert(response)
+    }
+
+
+
 }

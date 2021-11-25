@@ -5,7 +5,7 @@ import androidx.room.*
 import com.veselove.catfacts.models.CatFact
 
 @Dao
-interface CatsFactsDao {
+interface CatFactsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun upsert(fact: CatFact): Long
