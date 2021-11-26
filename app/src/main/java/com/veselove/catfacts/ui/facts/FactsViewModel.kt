@@ -12,7 +12,7 @@ class FactsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: CatFactsRepository
     val catFact: MutableLiveData<CatFact> = MutableLiveData()
-    private val response: CatFact = CatFact("none", 0)
+    private var response: CatFact = CatFact("none", 0)
 
     init {
         val catFactsDB = CatFactsDatabase.getDatabase(application).getCatFactsDao()
@@ -21,14 +21,12 @@ class FactsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getCatFact() = viewModelScope.launch {
-        val response = repository.getCatFact()
+        response = repository.getCatFact()
         catFact.postValue(response)
     }
 
     fun saveCatFact() = viewModelScope.launch(Dispatchers.IO) {
             repository.upsert(response)
     }
-
-
 
 }

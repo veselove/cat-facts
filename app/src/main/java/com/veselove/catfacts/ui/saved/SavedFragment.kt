@@ -1,6 +1,7 @@
 package com.veselove.catfacts.ui.saved
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +10,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.veselove.catfacts.adapters.SavedCatFactsAdapter
 import com.veselove.catfacts.databinding.FragmentSavedBinding
+import com.veselove.catfacts.models.CatFact
 
 class SavedFragment : Fragment() {
 
     private val savedViewModel: SavedViewModel by activityViewModels()
     private var _binding: FragmentSavedBinding? = null
+    lateinit var savedCatFactsAdapter: SavedCatFactsAdapter
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,21 +30,28 @@ class SavedFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-//        savedViewModel =
-//            ViewModelProvider(this).get(SavedViewModel::class.java)
+    ): View {
 
         _binding = FragmentSavedBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        setupRecyclerView()
 
-//        savedViewModel.text.observe(viewLifecycleOwner, Observer {
-//            binding.textSaved.text = it
-//        })
+        val linearLayoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        binding.catFactRV.layoutManager = linearLayoutManager
+
+        savedViewModel.getSavedCatFacts().observe(viewLifecycleOwner, Observer{ catFacts ->
+            savedCatFactsAdapter.differ.submitList(catFacts)
+        })
+
         return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setupRecyclerView() {
+        savedCatFactsAdapter = SavedCatFactsAdapter()
+        binding.catFactRV.apply {
+            adapter = savedCatFactsAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
     }
+
 }
