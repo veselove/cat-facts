@@ -22,4 +22,7 @@ class SavedViewModel(application: Application) : AndroidViewModel(application) {
         repository.deleteCatFact(fact)
     }
 
+    fun saveCatFact(fact: CatFact) = viewModelScope.launch(Dispatchers.IO) {
+        repository.upsert(fact)
+    }
 }

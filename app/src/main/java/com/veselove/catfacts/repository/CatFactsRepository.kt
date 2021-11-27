@@ -9,7 +9,7 @@ class CatFactsRepository(
 ) {
     suspend fun getCatFact() = RetrofitInstance.api.getCatFact()
 
-    fun upsert(fact: CatFact) = catFactsDao.upsert(fact)
+    suspend fun upsert(fact: CatFact) = catFactsDao.upsert(fact)
 
     fun getSavedCatFacts() = catFactsDao.getAllCatFacts()
 

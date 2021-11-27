@@ -8,7 +8,7 @@ import com.veselove.catfacts.models.CatFact
 interface CatFactsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(fact: CatFact): Long
+    suspend fun upsert(fact: CatFact): Long
 
     @Query("SELECT * FROM facts")
     fun getAllCatFacts(): LiveData<List<CatFact>>

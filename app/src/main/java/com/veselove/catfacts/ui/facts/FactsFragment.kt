@@ -1,12 +1,15 @@
 package com.veselove.catfacts.ui.facts
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.veselove.catfacts.R
 import com.veselove.catfacts.databinding.FragmentFactsBinding
 
 class FactsFragment : Fragment() {
@@ -43,6 +46,7 @@ class FactsFragment : Fragment() {
 
     private fun saveFact() {
         factsViewModel.saveCatFact()
+        Toast.makeText(activity, "Cat Fact added to saved", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

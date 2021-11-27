@@ -26,7 +26,7 @@ class FactsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun saveCatFact() = viewModelScope.launch(Dispatchers.IO) {
-            repository.upsert(response)
+        repository.upsert(response)
     }
 
 }
