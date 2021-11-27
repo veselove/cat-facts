@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,8 +24,6 @@ class SavedFragment : Fragment() {
     private var _binding: FragmentSavedBinding? = null
     lateinit var savedCatFactsAdapter: SavedCatFactsAdapter
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -62,10 +63,10 @@ class SavedFragment : Fragment() {
                 activity?.let {
                     Snackbar.make(
                         it.findViewById(R.id.savedConstraintLayout),
-                        "Successfully deleted article",
+                        R.string.successfully_removed,
                         Snackbar.LENGTH_LONG
                     ).apply {
-                        setAction("Undo") {
+                        setAction(R.string.undo) {
                             savedViewModel.saveCatFact(catFact)
                         }
                         show()
@@ -83,9 +84,12 @@ class SavedFragment : Fragment() {
 
     private fun setupRecyclerView() {
         savedCatFactsAdapter = SavedCatFactsAdapter()
+        val itemDecoration = DividerItemDecoration(requireActivity(), VERTICAL)
+        itemDecoration.setDrawable(ContextCompat.getDrawable(requireActivity(),R.drawable.rv_divider)!!)
         binding.catFactRV.apply {
             adapter = savedCatFactsAdapter
             layoutManager = LinearLayoutManager(activity)
+            addItemDecoration(itemDecoration)
         }
     }
 

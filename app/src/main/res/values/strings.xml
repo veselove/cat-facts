@@ -2,4 +2,8 @@
     <string name="app_name">CatFacts</string>
     <string name="title_facts">Facts</string>
     <string name="title_saved">Saved</string>
+    <string name="successfully_removed">Successfully deleted Cat Fact</string>
+    <string name="undo">Undo</string>
+    <string name="saved">Cat Fact added to saved</string>
+
 </resources>

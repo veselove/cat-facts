@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingLeft="1pt"
-    android:paddingTop="1pt"
-    android:paddingRight="1pt"
-    android:paddingBottom="1pt">
+    android:paddingLeft="2pt"
+    android:paddingTop="2pt"
+    android:paddingRight="2pt"
+    android:paddingBottom="2pt">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

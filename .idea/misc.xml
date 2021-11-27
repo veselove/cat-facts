@@ -5,11 +5,14 @@
       <map>
         <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/drawable/ic_cat_icon.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.14895833333333333" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/drawable/rv_divider.xml" value="0.11770833333333333" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/layout/activity_main.xml" value="0.2465483234714004" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/layout/fragment_facts.xml" value="0.2441123188405797" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/layout/fragment_rv_item.xml" value="0.1933876811594203" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/layout/fragment_saved.xml" value="0.2441123188405797" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/layout/rv_divider.xml" value="0.1015625" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1359375" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/CatFacts/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.15208333333333332" />
       </map>
     </option>
   </component>

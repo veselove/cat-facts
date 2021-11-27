@@ -1,7 +1,6 @@
 package com.veselove.catfacts.ui.facts
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +16,6 @@ class FactsFragment : Fragment() {
     private val factsViewModel: FactsViewModel by activityViewModels()
     private var _binding: FragmentFactsBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -46,7 +43,7 @@ class FactsFragment : Fragment() {
 
     private fun saveFact() {
         factsViewModel.saveCatFact()
-        Toast.makeText(activity, "Cat Fact added to saved", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity, R.string.saved, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

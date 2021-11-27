@@ -11,12 +11,13 @@ import com.veselove.catfacts.R
 import com.veselove.catfacts.models.CatFact
 
 class SavedCatFactsAdapter :
-RecyclerView.Adapter<SavedCatFactsAdapter.SavedCatFactsHolder>() {
+    RecyclerView.Adapter<SavedCatFactsAdapter.SavedCatFactsHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<CatFact>() {
         override fun areItemsTheSame(oldItem: CatFact, newItem: CatFact): Boolean {
             return oldItem.length == newItem.length
         }
+
         override fun areContentsTheSame(oldItem: CatFact, newItem: CatFact): Boolean {
             return oldItem == newItem
         }
