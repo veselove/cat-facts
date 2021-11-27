@@ -13,5 +13,5 @@ class CatFactsRepository(
 
     fun getSavedCatFacts() = catFactsDao.getAllCatFacts()
 
-    fun deleteCatFact(fact: CatFact) = catFactsDao.deleteCatFact(fact)
+    suspend fun deleteCatFact(fact: CatFact) = catFactsDao.deleteCatFact(fact)
 }

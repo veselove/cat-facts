@@ -14,6 +14,6 @@ interface CatFactsDao {
     fun getAllCatFacts(): LiveData<List<CatFact>>
 
     @Delete
-    fun deleteCatFact(fact: CatFact)
+    suspend fun deleteCatFact(fact: CatFact)
 
 }

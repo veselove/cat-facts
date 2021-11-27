@@ -18,4 +18,8 @@ class SavedViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getSavedCatFacts() = repository.getSavedCatFacts()
 
+    fun deleteCatFact(fact: CatFact) = viewModelScope.launch {
+        repository.deleteCatFact(fact)
+    }
+
 }
