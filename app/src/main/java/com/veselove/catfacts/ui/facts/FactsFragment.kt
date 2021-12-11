@@ -8,8 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.veselove.catfacts.R
 import com.veselove.catfacts.databinding.FragmentFactsBinding
+import kotlinx.coroutines.flow.collectLatest
 
 class FactsFragment : Fragment() {
 
@@ -27,9 +29,15 @@ class FactsFragment : Fragment() {
         _binding = FragmentFactsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        factsViewModel.catFact.observe(viewLifecycleOwner, Observer {
-            binding.tvCatFact.text = it.fact
-        })
+//        factsViewModel.catFact.observe(viewLifecycleOwner, Observer {
+//            binding.tvCatFact.text = it.fact
+//        })
+
+        lifecycleScope.launchWhenStarted {
+            factsViewModel.catFact.collectLatest {
+                binding.tvCatFact.text = it.fact
+            }
+        }
 
         binding.btnNext.setOnClickListener { nextFact() }
         binding.btnSave.setOnClickListener { saveFact() }

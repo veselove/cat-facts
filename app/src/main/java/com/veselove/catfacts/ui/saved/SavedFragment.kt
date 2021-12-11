@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -17,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.veselove.catfacts.R
 import com.veselove.catfacts.adapters.SavedCatFactsAdapter
 import com.veselove.catfacts.databinding.FragmentSavedBinding
+import kotlinx.coroutines.flow.collectLatest
 
 class SavedFragment : Fragment() {
 
@@ -40,9 +42,15 @@ class SavedFragment : Fragment() {
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.catFactRV.layoutManager = linearLayoutManager
 
-        savedViewModel.getSavedCatFacts().observe(viewLifecycleOwner, Observer { catFacts ->
-            savedCatFactsAdapter.differ.submitList(catFacts)
-        })
+//        savedViewModel.getSavedCatFacts().observe(viewLifecycleOwner, Observer { catFacts ->
+//            savedCatFactsAdapter.differ.submitList(catFacts)
+//        })
+
+        lifecycleScope.launchWhenStarted {
+            savedViewModel.getSavedCatFacts.collectLatest {
+                savedCatFactsAdapter.differ.submitList(it)
+            }
+        }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,

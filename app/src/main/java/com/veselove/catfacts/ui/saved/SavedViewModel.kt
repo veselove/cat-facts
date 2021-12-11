@@ -16,7 +16,9 @@ class SavedViewModel(application: Application) : AndroidViewModel(application) {
     val catFactsDB = CatFactsDatabase.getDatabase(application).getCatFactsDao()
     val repository = CatFactsRepository(catFactsDB)
 
-    fun getSavedCatFacts() = repository.getSavedCatFacts()
+//    fun getSavedCatFacts() = repository.getSavedCatFacts()
+
+    val getSavedCatFacts = repository.getSavedCatFacts().asFlow()
 
     fun deleteCatFact(fact: CatFact) = viewModelScope.launch {
         repository.deleteCatFact(fact)
