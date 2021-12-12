@@ -42,9 +42,12 @@ class SavedFragment : Fragment() {
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         binding.catFactRV.layoutManager = linearLayoutManager
 
-//        savedViewModel.getSavedCatFacts().observe(viewLifecycleOwner, Observer { catFacts ->
-//            savedCatFactsAdapter.differ.submitList(catFacts)
-//        })
+/*                                                              before Kotlin's Flow implementation
+
+        savedViewModel.getSavedCatFacts().observe(viewLifecycleOwner, Observer { catFacts ->
+            savedCatFactsAdapter.differ.submitList(catFacts)
+        })
+ */
 
         lifecycleScope.launchWhenStarted {
             savedViewModel.getSavedCatFacts.collectLatest {

@@ -1,11 +1,8 @@
 package com.veselove.catfacts.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.veselove.catfacts.models.CatFact
-import com.veselove.catfacts.MainActivity
 
 @Database(
     entities = [CatFact::class],
@@ -15,6 +12,8 @@ import com.veselove.catfacts.MainActivity
 abstract class CatFactsDatabase : RoomDatabase() {
 
     abstract fun getCatFactsDao(): CatFactsDao
+
+/*                                                  before Dagger Hilt implementation
 
     companion object {
         @Volatile
@@ -36,4 +35,5 @@ abstract class CatFactsDatabase : RoomDatabase() {
             }
         }
     }
+*/
 }

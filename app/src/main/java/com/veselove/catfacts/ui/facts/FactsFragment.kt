@@ -29,9 +29,12 @@ class FactsFragment : Fragment() {
         _binding = FragmentFactsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        factsViewModel.catFact.observe(viewLifecycleOwner, Observer {
-//            binding.tvCatFact.text = it.fact
-//        })
+/*                                                              before Kotlin's Flow implementation
+
+        factsViewModel.catFact.observe(viewLifecycleOwner, Observer {
+            binding.tvCatFact.text = it.fact
+        })
+ */
 
         lifecycleScope.launchWhenStarted {
             factsViewModel.catFact.collectLatest {
